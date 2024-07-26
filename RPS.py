@@ -5,7 +5,7 @@ def player(prev_play, opponent_history=[], play_order={}):
         prev_play = 'P'
 
     opponent_history.append(prev_play)
-    prediction = 'R'
+    prediction = 'S'
 
     if len(opponent_history) > 3:
         last_three = "".join(opponent_history[-4:])
