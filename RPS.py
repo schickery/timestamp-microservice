@@ -2,17 +2,17 @@
 
 def player(prev_play, opponent_history=[], play_order={}):
     if not prev_play:
-        prev_play = 'R'
+        prev_play = 'P'
 
     opponent_history.append(prev_play)
     prediction = 'P'
 
     if len(opponent_history) > 3:
-        last_three = "".join(opponent_history[-4])
+        last_three = "".join(opponent_history[-4:])
         play_order[last_three] = play_order.get(last_three, 0) + 1
 
     potential_plays = [
-        "".join([*opponent_history[-3], v])
+        "".join(opponent_history[-3:] + [v])
         for v in ['R', 'P', 'S']
     ]
 
@@ -24,8 +24,6 @@ def player(prev_play, opponent_history=[], play_order={}):
     if sub_order: 
         prediction = max(sub_order, key=sub_order.get)[-1]
 
-    ideal_response + {'P': 'S', 'R': 'P', 'S':'R'}
+    ideal_response = {'P': 'S', 'R': 'P', 'S':'R'}
 
     return ideal_response[prediction]
-    
-
